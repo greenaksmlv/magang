@@ -13,11 +13,20 @@ export const config = {
     },
     otp: '123456',
     passenger_data: {
-      name: 'Green Melissa',
-      email: '2281065@unai.edu',
-      phone_number: "081312331101",
-      cust_name_same: 1,
-      passengers: [
+        booker: {
+            // name: 'Green Melissa',
+            email: '2281065@unai.edu',
+            phone_number: '081312331101'
+            
+            // address: '',
+            // seat_number: 3,
+            // //return_seat: 5,
+            // cust_name_same: 1,
+            // cust_name: 'Green Melissa'
+        },
+        cust_name_same: 1,
+        custName: "Green Melissa",
+        passengers: [
             {
                 name: "Green Melissa",
                 seat_number: "3"

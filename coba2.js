@@ -1,47 +1,9 @@
 const { channel } = require('diagnostics_channel');
-const { config } = require('../../config');
-const { test, expect } = require('../setup');
-const exp = require('constants');
-const { toFormData } = require('axios');
+const { config } = require('./config');
+const { test, expect } = require('./setup');
+const { time } = require('console');
+const { isNumber } = require('util');
 
-
-// //activating PP
-// async function ppButton(webApp){
-//         const toggleButton = webApp.locator(`xpath=//label[@for='is_pp']`);
-//         await toggleButton.click();
-
-// }
-
-// Helper function to select Pergi date, Pulang date
-async function selectTravelDate(webApp, pilihan, date) {
-    test.info().annotations.push({
-        type: 'allure.step',
-        value: `Select ${pilihan} travel date`,
-    });
-
-    if (pilihan === 'pulang') {
-        // Activating PP (return trip) toggle
-        const toggle = webApp.locator( `xpath=//label[@for='is_pp']`);
-        const hiddenInput = webApp.locator('#is_pp');
-
-        const isAlreadyTrue = await hiddenInput.inputValue() === 'true';
-        if (!isAlreadyTrue) {
-            await toggle.click({ force: true });
-
-            await expect(hiddenInput).toHaveJSProperty('value', 'true');
-        }
-    }
-
-    const fieldId = pilihan === 'pergi' ? 'label-tglpergi' : 'label-tglpulang';
-    const dateField = webApp.locator(`id=${fieldId}`);
-    await expect(dateField).toBeVisible();
-    await dateField.click();
-
-    // Select next month 
-    await webApp.locator(`xpath=//span[@class='flatpickr-next-month']`).click();
-    await webApp.locator(`xpath=//span[@aria-label='${date}']`).click();
-    
-}
 
 // Helper function to pick departure
 async function pickDeparture(webApp, departure) {
@@ -51,7 +13,7 @@ async function pickDeparture(webApp, departure) {
     });
     await expect(webApp.locator(`xpath=//span[@id='label-asal']`)).toBeVisible();
     await webApp.locator(`xpath=//span[@id='label-asal']`).click();
-    await webApp.locator(`xpath=//span[normalize-space()='${departure}']`).click();
+    await webApp.locator(`xpath=//div[@class='dropdown-item outlet-item d-flex align-items-center pl-5']//span[contains(text(),'${departure}')]`).click();
 }
 
 // Helper function to pick arrival
@@ -65,36 +27,20 @@ async function pickArrival(webApp, arrival) {
     await webApp.locator(`xpath=//div[@class='dropdown-menu listoutlet show']//div[@class='div-listoutlet overflow-auto']//div//div//span[contains(text(),'${arrival}')]`).click();
 }
 
-// // Helper function to select date
-// async function selectDate(webApp, date) {
-//     test.info().annotations.push({
-//         type: 'allure.step',
-//         value: 'Select travel date',
-//     });
-//     const dateField = webApp.locator(`xpath=//span[@id='label-tglpergi']`);
-//     await expect(dateField).toBeVisible();
-//     await dateField.click();
+// Helper function to select date
+async function selectDate(webApp, date) {
+    test.info().annotations.push({
+        type: 'allure.step',
+        value: 'Select travel date',
+    });
+    const dateField = webApp.locator(`xpath=//span[@id='label-tglpergi']`);
+    await expect(dateField).toBeVisible();
+    await dateField.click();
     
-//     // Next month
-//     await webApp.locator(`xpath=//span[@class='flatpickr-next-month']`).click();
-//     await webApp.locator(`xpath=//span[@aria-label='${date}']`).click();
-// }
-
-// // Helper function to select return date
-// async function activatePP(webApp, returnDate) {
-//     test.info().annotations.push({
-//         type: 'allure.step',
-//         value: 'Slide PP',
-//     });
-    
-//     const dateField = webApp.locator(`xpath=//div[@class='inputform inputright divpulang']`);
-//     await expect(dateField).toBeVisible();
-//     await dateField.click();
-    
-//     // Next month
-//     await webApp.locator(`xpath=//span[@class='flatpickr-next-month']`).click();
-//     await webApp.locator(`xpath=//span[@aria-label='${returnDate}']`).click();
-// }
+    // Next month
+    await webApp.locator(`xpath=//span[@class='flatpickr-next-month']`).click();
+    await webApp.locator(`xpath=//span[@aria-label='${date}']`).click();
+}
 
 // Helper function to select passenger count
 async function selectPassenger(webApp, totalPassenger) {
@@ -103,33 +49,23 @@ async function selectPassenger(webApp, totalPassenger) {
         value: 'Select passenger count',
     });
     await webApp.locator(`xpath=//div[@class='ss-single-selected']`).click();
-    await webApp.locator(`xpath=//div[normalize-space()='${totalPassenger}']`).click();
+    await webApp.locator(`xpath=//div[normalize-space()='${totalPassenger} Orang']`).click(); // kalau banyak pemesan, tambahin "Orang"
 }
-
 
 // Helper function to select schedule
 async function selectSchedule(webApp) {
     test.info().annotations.push({
         type: 'allure.step',
-        value: 'Select departure schedule',
+        value: 'Select travel schedule',
     });
     const scheduleButton = webApp.locator(`xpath=(//button[@class='btn btn-sm color-primary br-16 py-2 px-4 mb-1'][normalize-space()='Pilih'])[1]`);
-    await scheduleButton.click();
-
-}
-
-// Helper function to select schedule pulang
-async function selectReturnSchedule(webApp) {
-    test.info().annotations.push({
-        type: 'allure.step',
-        value: 'Select return schedule',
-    });
-    const scheduleButton = webApp.locator(`xpath=//div[@id='pulang']//li[1]//div[1]//div[1]//div[2]//button[1]`);
     await scheduleButton.click();
 }
 
 // Helper function to input passenger data
-async function inputPassengerData(webApp, name, email, phoneNumber, custName) {
+async function inputPassengerData(webApp) {
+    const passengerData = config.passenger_data;
+
     test.info().annotations.push({
         type: 'allure.step',
         value: 'Input passenger details',
@@ -137,31 +73,64 @@ async function inputPassengerData(webApp, name, email, phoneNumber, custName) {
     await webApp.locator(`xpath=//input[@id='pemesan']`).fill(config.passenger_data.name);
     await webApp.locator(`xpath=//input[@placeholder='Masukkan Email']`).fill(config.passenger_data.email);
     await webApp.locator(`xpath=//input[@placeholder='Masukkan No. Telpon']`).fill(config.passenger_data.phone_number);
-    
+
     //untuk klik checkbox "Pemesan adalah penumpang"
     if(config.passenger_data.cust_name_same != 0){
         await webApp.locator("xpath=//label[@for='samacheck']").click()
     } else{
          //Input cust name
-        await webApp.locator("id=penumpang1").
-        fill(config.passenger_data.custName)
+        await webApp.locator("id=penumpang1").fill(config.passenger_data.custName)
     }
 
+    // Fill in other passenger names
+    const totalPassengers = config.journey.passenger_count || 1;
+
+    // If pemesan == penumpang1, start from penumpang2
+    const startIndex = passengerData.cust_name_same !== 0 ? 2 : 1;
+
+    for (let i = startIndex; i <= totalPassengers; i++) {
+        const passenger = passengerData.passengers[i - 1];
+        if (passenger?.name) {z
+            await webApp.locator(`#penumpang${i}`).fill(passenger.name);
+        }
+    }
+    
     //click button "Selanjutnya"
+    await webApp.locator(`xpath=//button[@id='submit']`).click();
+    // await Promise.all([
+    // webApp.waitForNavigation({ waitUntil: 'load' }),
+    // webApp.locator(`xpath=//button[@id='submit']`).click(),
+    // ]);
+
+}
+
+// Helper function to select seat
+async function selectSeat(webApp) {
+    test.info().annotations.push({
+        type: 'allure.step',
+        value: 'Select seat',
+    });
+
+    // Iterate over each passenger
+    for (const passenger of config.passenger_data.passengers) {
+        // Locate the passenger entry and click on it first
+        const passengerEntry = webApp.locator(`text=${passenger.name}`).first(); // Use .first() to select the first matching element
+        await passengerEntry.click();
+
+        // Define the seat locator based on the seat number for this passenger
+        const seat = webApp.locator(`xpath=//div[@id='${passenger.seat}']//p[1]`);
+        
+        // Wait for the seat to be enabled or visible before clicking
+        await seat.waitFor({ state: 'visible' });
+        await seat.click();
+    }
+    
+    // Finally, submit the selection
     await webApp.locator(`xpath=//button[@id='submit']`).click();
 }
 
-// // Helper function to select seat
-// async function selectSeat(webApp, numSeat) {
-//     test.info().annotations.push({
-//         type: 'allure.step',
-//         value: 'Select seat',
-//     });
-//     const seat = webApp.locator(`xpath=//div[@id='${numSeat}']//p[1]`);
-//     await seat.click(config.passenger_data.seat_number);
 
-//     await webApp.locator(`xpath=//button[normalize-space()='Selanjutnya']`).click();
-// }
+
 
 // Helper function to use voucher
 async function usingVoucher(webApp, voucherCode) {
@@ -182,6 +151,7 @@ async function usingVoucher(webApp, voucherCode) {
     }
     
 }
+
 
 // Helper function to select payment method
 async function selectPayment(webApp, paymentMethod) {
@@ -212,10 +182,6 @@ async function checkingTnc(webApp) {
 // Main test
 test('reservation', async ({ webApp }) => {
     // Add Allure Labels for better categorization in the report
-    test.info().annotations.push({    
-        type: 'allure.step',
-        value: 'Run reservation test',
-    });
     test.info().annotations.push({
         type: 'allure.label',
         value: 'feature: Reservation',
@@ -239,44 +205,32 @@ test('reservation', async ({ webApp }) => {
         value: 'Start reservation process',
     });
 
-    // Click PP button
-    await selectTravelDate(webApp, 'pergi', config.journey.date);
-    if (config.journey.returnDate) {
-        await selectTravelDate(webApp, 'pulang', config.journey.returnDate);
-    }
-
-
-    // Pick departure and arrival for pergi
+    // Pick departure and arrival
     await pickDeparture(webApp, config.journey.departure);
-    await expect(webApp.locator(`#label-tujuan`)).toBeVisible(); // Replace pageWaitUntil with explicit timeout
+    await webApp.waitForTimeout(1000); // Replace pageWaitUntil with explicit timeout
     await pickArrival(webApp, config.journey.arrival);
     
-    // // Select date and passenger count if needed
-    // await selectDate(webApp, config.journey.date);
-    // if (config.journey.passengerCount > 1) {
-    //     await selectPassenger(webApp, config.journey.passengerCount);
-    // }
+    // Select date and passenger count if needed
+    await selectDate(webApp, config.journey.date);
+    await selectPassenger(webApp, config.journey.passenger_count);
+    if (config.journey.passengerCount > 1) {
+        await selectPassenger(webApp, config.journey.passenger_count);
+    }
     
     // Search for available schedules
     await webApp.locator("xpath=//button[@class='btn btn-cari btn-block h-100 br-16']").click();
-        
-    // Select schedule pulang
-    if (config.journey.returnDate) {
-        await selectReturnSchedule(webApp);
-    }
     
-        
+    // Select a schedule
+    await selectSchedule(webApp);
+
+
+    
     // Input passenger details
-    await inputPassengerData(
-        webApp,
-        config.passenger_data.name,
-        config.passenger_data.email,
-        config.passenger_data.phoneNumber,
-    );
+    await inputPassengerData(webApp);
     
     // Select seat
     await selectSeat(webApp, config.passenger_data.seat_number);
-    
+
     if(config.voucher.freepass != ''){
         await usingVoucher(webApp, config.voucher.freepass)
     }
@@ -286,10 +240,14 @@ test('reservation', async ({ webApp }) => {
     else if(config.voucher.diskon != ''){
         await usingVoucher(webApp, config.voucher.diskon)
     }
-    
+
     // Select payment method
     await selectPayment(webApp, config.payment.collapse1.gopay);
-        
+    
     // Accept terms and submit
-    await checkingTnc(webApp); 
-    });
+    await checkingTnc(webApp)
+    
+});
+
+
+
