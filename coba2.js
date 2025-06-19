@@ -1,8 +1,7 @@
 const { channel } = require('diagnostics_channel');
 const { config } = require('./config');
 const { test, expect } = require('./setup');
-const { time } = require('console');
-const { isNumber } = require('util');
+
 
 
 // Helper function to pick departure
@@ -65,71 +64,80 @@ async function selectSchedule(webApp) {
 // Helper function to input passenger data
 async function inputPassengerData(webApp) {
     const passengerData = config.passenger_data;
+    const passengers = passengerData.passengers;
+    const totalPassengers = passengers.length;
 
     test.info().annotations.push({
         type: 'allure.step',
         value: 'Input passenger details',
     });
-    await webApp.locator(`xpath=//input[@id='pemesan']`).fill(config.passenger_data.name);
-    await webApp.locator(`xpath=//input[@placeholder='Masukkan Email']`).fill(config.passenger_data.email);
-    await webApp.locator(`xpath=//input[@placeholder='Masukkan No. Telpon']`).fill(config.passenger_data.phone_number);
 
-    //untuk klik checkbox "Pemesan adalah penumpang"
-    if(config.passenger_data.cust_name_same != 0){
-        await webApp.locator("xpath=//label[@for='samacheck']").click()
-    } else{
-         //Input cust name
-        await webApp.locator("id=penumpang1").fill(config.passenger_data.custName)
+    // Fill buyer details
+    await webApp.locator(`xpath=//input[@id='pemesan']`).fill(passengerData.name);
+    await webApp.locator(`xpath=//input[@placeholder='Masukkan Email']`).fill(passengerData.email);
+    await webApp.locator(`xpath=//input[@placeholder='Masukkan No. Telpon']`).fill(passengerData.phone_number);
+
+    // Handle "Pemesan adalah penumpang" checkbox
+    if (passengerData.cust_name_same != 0) {
+        await webApp.locator("xpath=//label[@for='samacheck']").click();
+    } else {
+        // If not same, fill the first passenger manually
+        await webApp.locator("#penumpang1").fill(passengerData.custName);
     }
 
-    // Fill in other passenger names
-    const totalPassengers = config.journey.passenger_count || 1;
+    // Decide where to start: skip first passenger if buyer is also passenger
+    const startIndex = passengerData.cust_name_same != 0 ? 1 : 0;
 
-    // If pemesan == penumpang1, start from penumpang2
-    const startIndex = passengerData.cust_name_same !== 0 ? 2 : 1;
-
-    for (let i = startIndex; i <= totalPassengers; i++) {
-        const passenger = passengerData.passengers[i - 1];
-        if (passenger?.name) {z
-            await webApp.locator(`#penumpang${i}`).fill(passenger.name);
+    // Fill passenger names starting from the correct index
+    for (let i = startIndex; i < totalPassengers; i++) {
+        const passenger = passengers[i];
+        if (passenger?.name) {
+            await webApp.locator(`#penumpang${i + 1}`).fill(passenger.name);
         }
     }
+}
+
     
     //click button "Selanjutnya"
-    await webApp.locator(`xpath=//button[@id='submit']`).click();
-    // await Promise.all([
-    // webApp.waitForNavigation({ waitUntil: 'load' }),
-    // webApp.locator(`xpath=//button[@id='submit']`).click(),
-    // ]);
+    // await webApp.locator(`xpath=//button[@id='submit']`).click();
+    await Promise.all([
+    webApp.waitForNavigation({ waitUntil: 'load' }),
+    webApp.locator(`xpath=//button[@id='submit']`).click(),
+    ]);
 
-}
+
 
 // Helper function to select seat
 async function selectSeat(webApp) {
     test.info().annotations.push({
         type: 'allure.step',
-        value: 'Select seat',
+        value: 'Select seats for each passenger',
     });
 
-    // Iterate over each passenger
-    for (const passenger of config.passenger_data.passengers) {
-        // Locate the passenger entry and click on it first
-        const passengerEntry = webApp.locator(`text=${passenger.name}`).first(); // Use .first() to select the first matching element
-        await passengerEntry.click();
+    const passengers = config.passenger_data.passengers;
 
-        // Define the seat locator based on the seat number for this passenger
-        const seat = webApp.locator(`xpath=//div[@id='${passenger.seat}']//p[1]`);
-        
-        // Wait for the seat to be enabled or visible before clicking
-        await seat.waitFor({ state: 'visible' });
-        await seat.click();
+    for (let i = 0; i < passengers.length; i++) {
+        const passenger = passengers[i];
+        const passengerIndex = i + 1;
+
+    // Wait for and click passenger block
+        const passengerBlock = webApp.locator(`xpath=//p[normalize-space()='${passengerIndex}']`);
+        await expect(passengerBlock).toBeVisible({ timeout: 5000 });
+        await passengerBlock.click();
+
+        await webApp.waitForTimeout(500); //pause before seat selection
+
+    // Seat selection
+        const seatNumber = passenger.seat_number;
+        const seatLocator = webApp.locator(`xpath=//p[normalize-space()='${seatNumber}']`);
+        await expect(seatLocator).toBeVisible({ timeout: 5000 });
+        await seatLocator.click();
     }
-    
+
     // Finally, submit the selection
-    await webApp.locator(`xpath=//button[@id='submit']`).click();
+    await webApp.locator(`xpath=//button[@id='submit']`).click(); 
+
 }
-
-
 
 
 // Helper function to use voucher
@@ -248,6 +256,3 @@ test('reservation', async ({ webApp }) => {
     await checkingTnc(webApp)
     
 });
-
-
-
