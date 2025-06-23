@@ -15,20 +15,20 @@ export const config = {
     passenger_data: {
       name: 'Green Melissa',
       email: '2281065@unai.edu',
-      phone_number: "081312331101",
+      phone_number: '081312331101',
       cust_name_same: 1,
       passengers: [
             {
                 name: "Green Melissa",
-                seat_number: "3"
+                seat_number: "4"
             },
             {
                 name: "Shann",
-                seat_number: "4",
+                seat_number: "5",
             },
             {
                 name: "Sam",
-                seat_number: "5",
+                seat_number: "6",
             }
         ]
     },
