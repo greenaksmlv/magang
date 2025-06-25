@@ -61,6 +61,10 @@ export const config = {
     ticket: 'BDTR250306D23B',
     packet: 'PCNX250221OKA5',
   },
+  news: {
+    hindariTransit: 'https://www.connex.co.id/berita/connex-shuttle-tanpa-transit',
+    gloryPromo: 'https://www.connex.co.id/berita/naik-shuttle-makin-murah-nikmati-glory-promo-sekarang',
+  },
   url: {
     website: 'https://connex.co.id',
     otp: ''
