@@ -5,7 +5,7 @@ export const config = {
       password: 'development',
     },
     journey: {
-      departure: 'Kfc dbotanica pasteur',
+      departure: 'Alfamart exit tol buah batu',
       arrival: 'Markas cafe',
       date: 'July 23, 2025',
       return_date: 'July 28 2025',
@@ -17,18 +17,21 @@ export const config = {
       email: '2281065@unai.edu',
       phone_number: '081312331101',
       cust_name_same: 1,
-      passengers: [
+      passengers:[
             {
                 name: "Green Melissa",
-                seat_number: "4"
+                seat_number: "1",
+                return_seat: "2",
             },
             {
                 name: "Shann",
-                seat_number: "5",
+                seat_number: "2",
+                return_seat: "3"
             },
             {
                 name: "Sam",
-                seat_number: "6",
+                seat_number: "3",
+                return_seat: "4"
             }
         ]
     },

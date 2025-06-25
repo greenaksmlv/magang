@@ -176,11 +176,11 @@ async function checkingTnc(webApp) {
 }
 
 // Main test
-test('reservation', async ({ webApp }) => {
+test('reservationPP', async ({ webApp }) => {
     // Add Allure Labels for better categorization in the report
     test.info().annotations.push({
         type: 'allure.label',
-        value: 'feature: Reservation',
+        value: 'feature: ReservationPP',
     });
     test.info().annotations.push({
         type: 'allure.label',

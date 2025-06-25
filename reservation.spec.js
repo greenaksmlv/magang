@@ -48,6 +48,8 @@ async function selectPassenger(webApp, totalPassenger) {
     });
     await webApp.locator(`xpath=//div[@class='ss-single-selected']`).click();
     await webApp.locator(`xpath=//div[normalize-space()='${totalPassenger} Orang']`).click(); // kalau banyak pemesan, tambahin "Orang"
+
+    // button search
     await webApp.locator(`xpath=//button[@class='btn btn-cari btn-block h-100 br-16']`).click();
 }
 
@@ -95,7 +97,6 @@ async function inputPassengerData(webApp) {
         }
     }
 
-
     //click button "Selanjutnya"
     await webApp.locator(`xpath=//button[@id='submit']`).click();
 }
@@ -130,7 +131,6 @@ async function selectSeat(webApp) {
 
     // Submit selection
     await webApp.locator(`xpath=//button[@id='submit']`).click();
-
 }
 
 // Helper function to use voucher
@@ -162,8 +162,6 @@ async function selectPayment(webApp, channel, paymentMethod) {
 
     const payment = webApp.locator(`xpath=//label[@for='${paymentMethod}']`).click();
 }
-
-
 
 // Helper function checking buttin syarat n ketentuan
 async function checkingTnc(webApp) {
@@ -214,7 +212,7 @@ test('reservation', async ({ webApp }) => {
     // Select a schedule
     await selectSchedule(webApp);
 
-// Input passenger details
+    // Input passenger details
     await inputPassengerData(webApp);
     
     // Select seat
@@ -235,6 +233,7 @@ test('reservation', async ({ webApp }) => {
     
     // Accept terms and submit
     await checkingTnc(webApp)    
+    
 });
 
 
