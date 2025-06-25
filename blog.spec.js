@@ -11,6 +11,9 @@ async function aboutUs(webApp) {
 
     await blogPath.isVisible();
     await blogPath.click();
+
+    // Expect the page to have text berita Connex
+    await expect(webApp.locator(`xpath=//h3[@class='header-title mb-2 text-white']`)).toBeVisible();
 }
 
 async function berita(webApp, newsKey) {
