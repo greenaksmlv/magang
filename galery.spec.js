@@ -1,21 +1,21 @@
 const { config } = require('./config');
 const { test, expect } = require('./setup');
 
-// Helper function to check contact
-async function contactUs(webApp) {
+// Helper function to check galery
+async function galery(webApp) {
     test.info().annotations.push({
         type: 'allure.step',
-        value: 'Navigate to contact us page',
+        value: 'Navigate to galery page',
     });
 
-    const contactPath = webApp.locator(`xpath=//a[normalize-space()='Kontak']`);
+    const galeryPath = webApp.locator(`xpath=//a[normalize-space()='Galeri']`);
 
-    await contactPath.click();
+    await galeryPath.click();
     await expect(webApp.locator(`xpath=//h3[@class='header-title mb-2 text-white']`)).toBeVisible();
 }
 
 // Main test
-test('contact', async ({ webApp }) => {
+test('galery', async ({ webApp }) => {
     // Add Allure Labels for categorizing in the report
     test.info().annotations.push({
         type: 'allure.label',
@@ -34,6 +34,6 @@ test('contact', async ({ webApp }) => {
         value: 'status: pass',
     });    
 
-    // Start the access to contact us page
-    await contactUs(webApp);
+    // Start the access to galery page
+    await galery(webApp);
 });

@@ -53,6 +53,5 @@ test('blog', async ({ webApp }) => {
     await aboutUs(webApp);
 
     // Click berita 
-    await berita(webApp, 'gloryPromo');
-
-})
+    await berita(webApp, 'hindariTransit');
+});
