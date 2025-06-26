@@ -71,6 +71,14 @@ export const config = {
     email: `xpath=//button[normalize-space()='Email']`,
     google: `xpath=//button[@id='googleLogin']`,
   },
+  web_source: {
+    connex: `xpath=//img[@alt='Connex']`,
+    playstore: `xpath=//img[@alt='Playstore']`,
+    appstore: `xpath=//img[@alt='Appstore']`,
+    },
+    media_sosial: {
+
+    },
   url: {
     website: 'https://connex.co.id',
     otp: ''
