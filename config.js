@@ -65,6 +65,12 @@ export const config = {
     hindariTransit: 'https://www.connex.co.id/berita/connex-shuttle-tanpa-transit',
     gloryPromo: 'https://www.connex.co.id/berita/naik-shuttle-makin-murah-nikmati-glory-promo-sekarang',
   },
+  sign_methods: {
+    phone: `xpath=//button[normalize-space()='Nomor Telepon']`,
+    whatsapp: `xpath=//button[normalize-space()='Whatsapp']`,
+    email: `xpath=//button[normalize-space()='Email']`,
+    google: `xpath=//button[@id='googleLogin']`,
+  },
   url: {
     website: 'https://connex.co.id',
     otp: ''
