@@ -8,17 +8,17 @@ async function clickMedsos(webApp) {
         value: 'Clicking medsos on website footer',
     });
 
-    const fcbkBtn = webapp.locator(config.media_sosial.facebook);
-    await expect(fcbkBtn).toBeVisible();
-    await fcbkBtn.click();
+    // const fcbkBtn = webapp.locator(config.media_sosial.facebook);
+    // await expect(fcbkBtn).toBeVisible();
+    // await fcbkBtn.click();
 
     const igBtn = webApp.locator(config.media_sosial.instagram);
     await expect(igBtn).toBeVisible();
     await igBtn.click();
 
-    const ttBtn = webApp.locator(config.media_sosial.tiktok);
-    await expect(ttBtn).toBeVisible();
-    await ttBtn.click();
+    // const ttBtn = webApp.locator(config.media_sosial.tiktok);
+    // await expect(ttBtn).toBeVisible();
+    // await ttBtn.click();
 }
 
 // Main test

@@ -71,19 +71,25 @@ export const config = {
     email: `xpath=//button[normalize-space()='Email']`,
     google: `xpath=//button[@id='googleLogin']`,
   },
+  more_info: {
+
+  },
+  media_sosial: {
+    facebook: `xpath=//a[normalize-space()='Facebook']`,
+    instagram: `xpath=//a[normalize-space()='Instagram']`,
+    tiktok: `xpath=//a[normalize-space()='Tiktok']`,
+  },
+  phone_info: {
+    no1: `xpath=//a[normalize-space()='0817 0888 666']`,
+    no2: `xpath=//a[normalize-space()='0877 7888 6665']`,
+    no3: `xpath=//a[normalize-space()='0818 3555 53']`,
+    no4: `xpath=//a[normalize-space()='0817 6662 226']`,
+  },
   web_source: {
     connex: `xpath=//img[@alt='Connex']`,
     playstore: `xpath=//img[@alt='Playstore']`,
     appstore: `xpath=//img[@alt='Appstore']`,
-    },
-    media_sosial: {
-      facebook: `xpath=//a[normalize-space()='Facebook']`,
-      instagram: `xpath=//a[normalize-space()='Instagram']`,
-      tiktok: `xpath=//a[normalize-space()='Tiktok']`,
-    },
-    informasi: {
-      
-    },
+  },
   url: {
     website: 'https://connex.co.id',
     otp: ''
