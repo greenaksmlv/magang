@@ -77,7 +77,12 @@ export const config = {
     appstore: `xpath=//img[@alt='Appstore']`,
     },
     media_sosial: {
-
+      facebook: `xpath=//a[normalize-space()='Facebook']`,
+      instagram: `xpath=//a[normalize-space()='Instagram']`,
+      tiktok: `xpath=//a[normalize-space()='Tiktok']`,
+    },
+    informasi: {
+      
     },
   url: {
     website: 'https://connex.co.id',
