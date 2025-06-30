@@ -72,7 +72,7 @@ export const config = {
     google: `xpath=//button[@id='googleLogin']`,
   },
   more_info: {
-
+    method: ['v-pills-0-tab'],
   },
   media_sosial: {
     facebook: `xpath=//a[normalize-space()='Facebook']`,
