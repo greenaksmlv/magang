@@ -1,6 +1,18 @@
 const { config } = require('./config');
 const { test, expect } = require('./setup');
 
+/**
+ * Navigasi ke halaman Lacak Paket dari landing page/halaman utama
+ * 
+ * Alur: 
+ * - Klik tombol atau link "Lacak Paket"
+ * - Isi input kode booking
+ * - Klik tombol "Cek Paket"
+ * 
+ * @param {object} webApp - Konteks browser dari Playwright
+ * @param {string} codeBooking - Kode booking yang akan dilacak
+ */
+
 // Helper function to lacak paket
 async function packetTracking(webApp) {
     test.info().annotations.push({
@@ -18,6 +30,16 @@ async function packetTracking(webApp) {
      }
 } 
 
+/**
+ * Fungsi untuk mengecek apakah informasi pelacakan tampil
+ * 
+ * Alur: 
+ * - Verifikasi input pelacakan terlihat 
+ * 
+ * @param {object} webApp - Konteks browser dari Playwright
+ * @param {string} codeBooking - Kode booking yang akan dilacak
+ */
+
 // Helper function to check tracking info with try-catch
 async function dataTracking(webApp, codeBooking) {
     test.info().annotations.push({
@@ -32,6 +54,24 @@ async function dataTracking(webApp, codeBooking) {
         throw error;
     }
 }
+
+/**
+ * Pengujian utama untuk fitur pelacakan paket
+ * 
+ * Tujuan:
+ * - Memastikan pengguna dapat melakukan pelacakan paket berdasarkan kode booking
+ * 
+ * Alur: 
+ * - Akses halaman "Lacak Paket"
+ * - Masukkan kode booking dari konfigurasi
+ * - Verifikasi form dan info pelacakan muncul
+ * 
+ * Allure Labels:
+ * - feature: Tracking Packet
+ * - severity: normal
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test 
 test('packetTracking', async ({ webApp }) => {
