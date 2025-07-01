@@ -1,6 +1,16 @@
 const { config } = require('./config');
 const { test, expect } = require('./setup');
 
+/**
+ * Navigasi ke halaman Blog dari landing page/halaman utama
+ * 
+ * Alur:
+ * - Cari tombol "Blog" di halaman utama
+ * - Pastikan tombol terlihat
+ * - Klik tombol untuk menuju ke halaman Blog
+ * - Verifikasi bahwa elemen judul halaman blog muncul
+ */
+
 async function aboutUs(webApp) {
     test.info().annotations.push({
         type: 'allure.step',
@@ -16,6 +26,19 @@ async function aboutUs(webApp) {
     await expect(webApp.locator(`xpath=//h3[@class='header-title mb-2 text-white']`)).toBeVisible();
 }
 
+/**
+ * Klik salah satu berita/artikel yang ada di Blog berdasarkan key yang ada di config
+ * 
+ * @param {object} webApp - Konteks browser dari Playwright 
+ * @param {string} newsKey - Key untuk mencari path artikel dari config.news 
+ * 
+ * Alur:
+ * - Mengambil path artikel dari config.news
+ * - Temukan tombol berita/selengkapnya
+ * - Pastikan tombol terlihat
+ * - Klik tombol
+ */
+
 async function berita(webApp, newsKey) {
     test.info().annotations.push({
         type: 'allure.step',
@@ -28,6 +51,20 @@ async function berita(webApp, newsKey) {
     await expect(beritaBtn).toBeVisible();
     await beritaBtn.click();
 }
+
+/**
+ * Pengujian utama untuk fitur Blog
+ * 
+ * Tujuan: 
+ * - Memastikan pengguna dapat mengakses halaman Blog
+ * - Memastikan salah satu fitur artikel berita dapat diakses 
+ * 
+ * Allure Labels:
+ * - feature: Access to blog
+ * - severity: normal
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test
 test('blog', async ({ webApp }) => {
