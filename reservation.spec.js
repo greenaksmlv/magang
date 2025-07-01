@@ -2,6 +2,11 @@ const { channel } = require('diagnostics_channel');
 const { config } = require('./config');
 const { test, expect } = require('./setup');
 
+/**
+ * Memilih lokasi keberangkatan dari dropdown asal/departure
+ * @param {object} webApp - Objek halaman dari Playwright
+ * @param {string} departure - Nama outlet keberangkatan
+ */
 
 // Helper function to pick departure
 async function pickDeparture(webApp, departure) {
@@ -14,6 +19,12 @@ async function pickDeparture(webApp, departure) {
     await webApp.locator(`xpath=//div[@class='dropdown-item outlet-item d-flex align-items-center pl-5']//span[contains(text(),'${departure}')]`).click();
 }
 
+/**
+ * Memilih tujuan perjalanan dari dropdown tujuan/arrival
+ * @param {object} webApp 
+ * @param {string} arrival - Nama outlet tujuan 
+ */
+
 // Helper function to pick arrival
 async function pickArrival(webApp, arrival) {
     test.info().annotations.push({
@@ -24,6 +35,12 @@ async function pickArrival(webApp, arrival) {
     await webApp.locator(`xpath=//span[@id='label-tujuan']`).click();
     await webApp.locator(`xpath=//div[@class='dropdown-menu listoutlet show']//div[@class='div-listoutlet overflow-auto']//div//div//span[contains(text(),'${arrival}')]`).click();
 }
+
+/**
+ * Memilih tanggal keberangkatan dari kalender
+ * @param {object} webApp 
+ * @param {string} date - Format tanggal contoh: "July 23, 2025" 
+ */
 
 // Helper function to select date
 async function selectDate(webApp, date) {
@@ -40,6 +57,12 @@ async function selectDate(webApp, date) {
     await webApp.locator(`xpath=//span[@aria-label='${date}']`).click();
 }
 
+/**
+ * Menentukan jumlah penumpang dan klik tombol cari
+ * @param {object} webApp 
+ * @param {number} totalPassenger 
+ */
+
 // Helper function to select passenger count
 async function selectPassenger(webApp, totalPassenger) {
     test.info().annotations.push({
@@ -53,6 +76,10 @@ async function selectPassenger(webApp, totalPassenger) {
     await webApp.locator(`xpath=//button[@class='btn btn-cari btn-block h-100 br-16']`).click();
 }
 
+/**
+ * Memilih jadwal keberangkatan pertama yang tersedia 
+ */
+
 // Helper function to select schedule
 async function selectSchedule(webApp) {
     test.info().annotations.push({
@@ -62,6 +89,12 @@ async function selectSchedule(webApp) {
     const scheduleButton = webApp.locator(`xpath=(//button[@class='btn btn-sm color-primary br-16 py-2 px-4 mb-1'][normalize-space()='Pilih'])[1]`);
     await scheduleButton.click();
 }
+
+/**
+ * Mengisi data pemesan dan penumpang yang disesuaikan dengan config.js 
+ * Mengklik checkbox apabila pemesan adalah penumpang
+ * Apabila bukan penumpang, maka akan mengisi secara manual
+ */
 
 // Helper function to input passenger data
 async function inputPassengerData(webApp) {
@@ -101,6 +134,11 @@ async function inputPassengerData(webApp) {
     await webApp.locator(`xpath=//button[@id='submit']`).click();
 }
 
+/**
+ * Memilih kursi sesuai dengan nama dan nomor yang ada di config.js
+ * Apabila penumpang > 1 maka, akan klik nama penumpang lalu akan memilih nomor kursi
+ */
+
 // Helper function to select seat
 async function selectSeat(webApp) {
     test.info().annotations.push({
@@ -133,6 +171,10 @@ async function selectSeat(webApp) {
     await webApp.locator(`xpath=//button[@id='submit']`).click();
 }
 
+/**
+ * Menggunakan kode vocher yang valid
+ */
+
 // Helper function to use voucher
 async function usingVoucher(webApp, voucherCode) {
     test.info().annotations.push({
@@ -151,6 +193,10 @@ async function usingVoucher(webApp, voucherCode) {
     }
 }
 
+/**
+ * Memilih metode pembayaran dari label
+ */
+
 // Helper function to select payment method
 async function selectPayment(webApp, channel, paymentMethod) {
     test.info().annotations.push({
@@ -163,6 +209,10 @@ async function selectPayment(webApp, channel, paymentMethod) {
     const payment = webApp.locator(`xpath=//label[@for='${paymentMethod}']`).click();
 }
 
+/**
+ * Menyetujui dan mengklik checkbox syarat dan ketentuan, lalu submit
+ */
+
 // Helper function checking buttin syarat n ketentuan
 async function checkingTnc(webApp) {
     const tncButton = webApp.locator(`xpath=//label[contains(text(),'Silahkan tandai kotak ini sebagai bukti bahwa anda')]`);
@@ -170,6 +220,16 @@ async function checkingTnc(webApp) {
 
     await webApp.locator(`xpath=//button[@id='submit']`).click();
 }
+
+/**
+ * Pengujian utama untuk proses pemesanan tiket
+ * 
+ * Allure Labels:
+ * - feature: Reservation
+ * - severity: critical
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test
 test('reservation', async ({ webApp }) => {
