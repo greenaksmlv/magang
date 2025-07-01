@@ -2,6 +2,29 @@ const { channel } = require('diagnostics_channel');
 const { config } = require('./config');
 const { test, expect } = require('./setup');
 
+/**
+ * Fungsi:
+ * - Untuk melakukan pengecekan kode booking pada halaman "Cek Reservasi"
+ * 
+ * Alur: 
+ * - Cari tombol "Cek Reservasi" di halaman utama
+ * - Pastikan tombol terlihat
+ * - Klik link untuk menuju ke halaman Cek Reservasi
+ * 
+ * JIKA KODE BOOKING VALID: 
+ * - Masukkan kode bookingke dalam kolom kode booking
+ * - Klik tombol "Cek Reservasi"
+ * - Cetak URL setelah navigasi 
+ *
+ * JIKA KODE BOOKING TIDAK VALID:
+ * - Isi kolom dengan placeholder "codeBooking"
+ * - Klik tombol "Cek Reservasi"
+ * - Log akan muncul bahwa kode tidak ditemukan 
+ * 
+ * @param {object} webApp - Objek browser Playwright 
+ * @param {string} codeBooking - Kode booking yang akan dicek
+ */
+
 // Helper function to check booking code
 async function reservationCheck(webApp, codeBooking) {
     test.info().annotations.push({
@@ -34,6 +57,20 @@ async function reservationCheck(webApp, codeBooking) {
         return;
     }
 }
+
+/**
+ * Pengujian utaman untuk fitur Cek Reservasi
+ * 
+ * Tujuan:
+ * - Memastikan halaman "Cek Reservasi" dapat diakses
+ * - Memverfikasi bahwa pengguna dapat menginput dan mengecek kode booking
+ * 
+ * Allure Labels:
+ * - feature: check booking
+ * - severity: critical
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test
 test('Reservation Check', async ({ webApp }) => {
