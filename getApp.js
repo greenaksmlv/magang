@@ -52,7 +52,7 @@ test('clicking source', async ({ webApp }) => {
     // Add Allure Labels for categorizing in the report
     test.info().annotations.push({
         type: 'allure.label',
-        value: 'feature: contact us page',
+        value: 'feature: get app page',
     });
     test.info().annotations.push({
         type: 'allure.label',
