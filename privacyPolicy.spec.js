@@ -1,6 +1,16 @@
 const { config } = require('./config');
 const { test, expect } = require('./setup');
 
+/**
+ * Fungsi untuk mengakses halaman "Kebijakan Privasi"
+ * 
+ * Alur:
+ * - Klik link "Kebijakan Privasi"
+ * - Verifikasi bahwa elemen dengan teks "Kebijakan Privasi" muncul
+ * 
+ * @param {object} webApp - Objek Playwright untuk halaman web
+ */
+
 // Helper function to check on privacy policy
 async function privacyPolicy(webApp) {
     test.info().annotations.push({ 
@@ -13,6 +23,19 @@ async function privacyPolicy(webApp) {
     // Expect the page to have the text KEBIJAKAN PRIVASI
     await expect(webApp.locator(`xpath=//h3[normalize-space()='kebijakan privasi']`)).toBeVisible();
 }
+
+/**
+ * Pengujian utama untuk halaman Privacy Policy
+ * 
+ * Tujuan:
+ * - Memastikan tautan "Kebijakan Privasi" dapat diakses dan menampilkan halaman yang benar
+ * 
+ * Allure Labels:
+ * - feature: Privacy and Policy
+ * - severity: normal
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test
 test('provacy policy', async ({ webApp }) => {
