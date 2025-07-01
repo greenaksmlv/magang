@@ -39,7 +39,7 @@ async function clickMedsos(webApp) {
  * - Memastikan bahwa ikon media social yang berada di footer dapat diklik dan terlihat
  * 
  * Allure Labels: 
- * - feature: contact us page
+ * - feature: media social
  * - severity: normal
  * - platform: web
  * - status: pass
@@ -50,7 +50,7 @@ test('clicking media social', async ({ webApp }) => {
     // Add Allure Labels for categorizing in the report
     test.info().annotations.push({
         type: 'allure.label',
-        value: 'feature: contact us page',
+        value: 'feature: media soscial',
     });
     test.info().annotations.push({
         type: 'allure.label',
