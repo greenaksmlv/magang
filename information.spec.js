@@ -1,6 +1,17 @@
 const { config } = require('./config');
 const { test, expect } = require('./setup');
 
+/**
+ * Fungsi untuk menguji interaksi klik terhadap elemen nomor telefon yang berada di footer
+ * 
+ * Alur: 
+ * - Temukan elemen nomor telefon
+ * - Verifikasi elemen terlihat
+ * - Klik elemen yang diinginkan 
+ * 
+ * @param {object} webApp - Objek halaman Plawright untuk interaksi DOM
+ */
+
 // Helper function to click phone numbers on information
 async function clickInformation(webApp) {
     test.info().annotations.push({
@@ -12,6 +23,7 @@ async function clickInformation(webApp) {
     await expect(phone1).toBeVisible();
     await phone1.click();
 
+    // NOMOR TELEFON LAINNYA DAPAT DIAKTIFKAN SESUAI DENGAN KEBUTUHAN
     // const phone2 = webApp.locator(config.phone_info.no2);
     // await expect(phone2).toBeVisible();
     // await phone2.click();
@@ -24,6 +36,19 @@ async function clickInformation(webApp) {
     // await expect(phone4).toBeVisible();
     // await phone4.click();
 }
+
+/**
+ * Pengujian utama untuk fitur klik nomor telefon
+ * 
+ * Tujuan: 
+ * - Memastikan nomor telefon yang tercantum di informasi footer dapat terlihat dan diklik
+ * 
+ * Allure Labels:
+ * - feature: information page
+ * - severity: normal
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test
 test('clicking phone number info', async ({ webApp }) => {
