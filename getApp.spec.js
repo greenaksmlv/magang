@@ -25,10 +25,6 @@ async function clickSource(webApp) {
     await googlePlayBtn.click();
 
     // AKTIFKAN JIKA INGIN MENGUJI TOMBOL LAINNYA 
-    // const connexBtn = webApp.locator(config.web_source.connex);
-    // await expect(connexBtn).toBeVisible();
-    // await connexBtn.click();
-
     // const appStoreBtn = webApp.locator(config.web_source.appstore);
     // await expect(appStoreBtn).toBeVisible();
     // await appStoreBtn.click();
