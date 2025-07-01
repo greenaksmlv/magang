@@ -1,6 +1,23 @@
+/**
+ * @file setup.js
+ * @description
+ * File ini digunakan untuk mengatur konfigurasi awal sebelum menjalankan setiap pengujian Playwright
+ * Ini mencakup peluncuran browser, membuka halaman awal situs Connex, dan juga menutup popup yang muncul
+ * Ini juga menyediakan instance `webApp` yang digunakan di seluruh test
+ */
+
 const { test, expect, chromium } = require('@playwright/test');
 const { config } = require('./config');
 
+
+/**
+ * @function closePopup
+ * @description
+ * Menutup semua popup awal yang muncul ketika halaman dimuat
+ * Fungsi ini akan mencari tombol close dengan ikon `fa-times-circle` dan mengklik tombolnya selama masih terlihat
+ * 
+ * @param {Page} newPage - Halaman browser yang sedang dibuka 
+ */
 // Close popup
 async function closePopup(newPage) {
     test.info().annotations.push({
@@ -29,7 +46,24 @@ async function closePopup(newPage) {
     }
 }
 
+// Export assertion util
 exports.expect = expect;
+
+/**
+ * @typedef {object} Fixtures
+ * @property {page} webApp - Halaman yang telah disiapkan dan bebas dari popup awal
+ */
+
+/**
+ * @description
+ * Fixture `webApp` mengoverride Playwright default `page` dengan page yang baru 
+ * Fixture ini akan:
+ * 1. Meluncurkan browser Chromium
+ * 2. Membuka halaman awal Connex (`config.url.website`)
+ * 3. Menutup popup jiga ada
+ * 4. Menyediakan halaman yang siap untuk digunakan pada setiap test
+ */
+
 exports.test = test.extend({
     webApp: async ({ page }, use) => {
         // Launch the browser in headless mode here
