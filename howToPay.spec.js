@@ -1,6 +1,22 @@
 const { config } = require('./config');
 const { test, expect } = require('./setup');
 
+/**
+ * Fungsi untuk mengakses halaman "Cara Bayar"
+ * Memeriksa instruksi pembayarannya berdasarkan metode yang ditentukan
+ * 
+ * Alur:
+ * - Klik link "Cara Bayar" yang berada di footer
+ * - Verifikasi judul halaman muncul
+ * - Untuk setiap metode pembayaran dalam array `methods`:
+ *      - Klik metode pembayaran 
+ *      - Klik dropdown untuk mendapatkan instruksi
+ *      - Verifikasi bahwa detail instruksi terlihat
+ * 
+ * @param {object} webApp - Konteks Playwright (browser page)
+ * @param {Array<string>} methods - Daftar ID metode pembayaran yang ingin diketahui dari (config.more_info.method) 
+ */
+
 // Helper function to check how to pay 
 async function howToPay(webApp, methods) {
     test.info().annotations.push({ 
@@ -26,6 +42,20 @@ async function howToPay(webApp, methods) {
     await expect(webApp.locator(`xpath=//h6[contains(text(),'CARA PEMBAYARAN MENGGUNAKAN Pembayaran Telkom')]`)).toBeVisible();
     }
 }
+
+/**
+ * Pengujian utama untuk fitur "Cara Bayar"
+ * 
+ * Tujuan: 
+ * - Memastikan halaman "Cara Bayar" dapat diakses
+ * - Memastikan bahwa pengguna dapat melihat instruksi pembayaran untuk metode yang diinginkan
+ * 
+ * Allure Labels:
+ * - feature: how to pay page
+ * - severity: normal
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test
 test('how to pay', async ({ webApp }) => {
