@@ -1,6 +1,15 @@
 const { config } = require('./config');
 const { test, expect } = require('./setup');
 
+/**
+ * Navigasi ke halaman "Kontak" dari landing page/halaman utama
+ * 
+ * Alur: 
+ * - Mencari tombol atau link "Kontak"
+ * - Klik link untuk menuju ke halaman Kontak
+ * - Verifikasi bahwa elemen judul halaman Kontak muncul
+ */
+
 // Helper function to check contact
 async function contactUs(webApp) {
     test.info().annotations.push({
@@ -13,6 +22,19 @@ async function contactUs(webApp) {
     await contactPath.click();
     await expect(webApp.locator(`xpath=//h3[@class='header-title mb-2 text-white']`)).toBeVisible();
 }
+
+/**
+ * Pengujian utama untuk fitur Contact Us
+ * 
+ * Tujuan:
+ * - Memastikan pengguna dapat mengakses halaman Kontak
+ * 
+ * Allure Labels:
+ * - feature: contact us page
+ * - severity: normal
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test
 test('contact', async ({ webApp }) => {
