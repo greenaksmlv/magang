@@ -50,7 +50,7 @@ test('sign in', async ({ webApp }) => {
     // Add Allure Labels for categorizing in the report
     test.info().annotations.push({
         type: 'allure.label',
-        value: 'feature: contact us page',
+        value: 'feature: sign in page',
     });
     test.info().annotations.push({
         type: 'allure.label',

@@ -30,7 +30,7 @@ test('clicking phone number info', async ({ webApp }) => {
     // Add Allure Labels for categorizing in the report
     test.info().annotations.push({
         type: 'allure.label',
-        value: 'feature: contact us page',
+        value: 'feature: information page',
     });
     test.info().annotations.push({
         type: 'allure.label',
