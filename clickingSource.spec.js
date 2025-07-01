@@ -1,6 +1,18 @@
 const { config } = require('./config');
 const { test, expect } = require('./setup');
 
+/**
+ * Fungsi untuk menguji interaksi klik pada ikon sumber website
+ * Terdapat tombol Google Play Store, App Store, dan Situs Connex
+ * 
+ * Alur: 
+ * - Temukan tombol atau link sumber
+ * - Pastikan bahwa tombol/linknya terlihat
+ * - Klik tombol/link 
+ *  
+ * @param {object} webApp - Objek Playwright untuk interaksi halaman 
+ */
+
 // Helper function to click media sosial 
 async function clickSource(webApp) {
     test.info().annotations.push({
@@ -20,6 +32,19 @@ async function clickSource(webApp) {
     // await expect(appStoreBtn).toBeVisible();
     // await appStoreBtn.click();
 }
+
+/**
+ * Pengujian utama untuk klik tautan sumber website
+ * 
+ * Tujuan:
+ * - Memastikan bahwa ikon/link web source dapat diklik dari halaman utama
+ * 
+ * Allure Labels:
+ * - feature: click web source
+ * - severity: normal
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test
 test('clicking source', async ({ webApp }) => {
