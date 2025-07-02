@@ -58,19 +58,19 @@ async function reservationCheck(webApp, codeBooking) {
     }
 }
 
-// /**
-//  * Pengujian utaman untuk fitur Cek Reservasi
-//  * 
-//  * Tujuan:
-//  * - Memastikan halaman "Cek Reservasi" dapat diakses
-//  * - Memverfikasi bahwa pengguna dapat menginput dan mengecek kode booking
-//  * 
-//  * Allure Labels:
-//  * - feature: check booking
-//  * - severity: critical
-//  * - platform: web
-//  * - status: pass
-//  */
+/**
+ * Pengujian utaman untuk fitur Cek Reservasi
+ * 
+ * Tujuan:
+ * - Memastikan halaman "Cek Reservasi" dapat diakses
+ * - Memverfikasi bahwa pengguna dapat menginput dan mengecek kode booking
+ * 
+ * Allure Labels:
+ * - feature: check booking
+ * - severity: critical
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test
 test('Reservation Check', async ({ webApp }) => {
