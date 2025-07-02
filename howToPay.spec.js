@@ -43,19 +43,19 @@ async function howToPay(webApp, methods) {
     }
 }
 
-/**
- * Pengujian utama untuk fitur "Cara Bayar"
- * 
- * Tujuan: 
- * - Memastikan halaman "Cara Bayar" dapat diakses
- * - Memastikan bahwa pengguna dapat melihat instruksi pembayaran untuk metode yang diinginkan
- * 
- * Allure Labels:
- * - feature: how to pay page
- * - severity: normal
- * - platform: web
- * - status: pass
- */
+// /**
+//  * Pengujian utama untuk fitur "Cara Bayar"
+//  * 
+//  * Tujuan: 
+//  * - Memastikan halaman "Cara Bayar" dapat diakses
+//  * - Memastikan bahwa pengguna dapat melihat instruksi pembayaran untuk metode yang diinginkan
+//  * 
+//  * Allure Labels:
+//  * - feature: how to pay page
+//  * - severity: normal
+//  * - platform: web
+//  * - status: pass
+//  */
 
 // Main test
 test('how to pay', async ({ webApp }) => {

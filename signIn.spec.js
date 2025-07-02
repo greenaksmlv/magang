@@ -31,19 +31,19 @@ async function signIn(webApp, method) {
     await button.click();
 }
 
-/**
- * Pengujian utama untuk proses Sign In
- * 
- * Tujuan:
- * - Memastikan bahwa halaman login dapat diakses
- * - Memastikan bahwa tombol login menggunakan metode tertentu dapat diklik
- * 
- * Allure Labels:
- * - feature: sign in
- * - severity: normal
- * - platform: web
- * - status: pass
- */
+// /**
+//  * Pengujian utama untuk proses Sign In
+//  * 
+//  * Tujuan:
+//  * - Memastikan bahwa halaman login dapat diakses
+//  * - Memastikan bahwa tombol login menggunakan metode tertentu dapat diklik
+//  * 
+//  * Allure Labels:
+//  * - feature: sign in
+//  * - severity: normal
+//  * - platform: web
+//  * - status: pass
+//  */
 
 // Main test
 test('sign in', async ({ webApp }) => {

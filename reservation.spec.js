@@ -19,11 +19,11 @@ async function pickDeparture(webApp, departure) {
     await webApp.locator(`xpath=//div[@class='dropdown-item outlet-item d-flex align-items-center pl-5']//span[contains(text(),'${departure}')]`).click();
 }
 
-/**
- * Memilih tujuan perjalanan dari dropdown tujuan/arrival
- * @param {object} webApp 
- * @param {string} arrival - Nama outlet tujuan 
- */
+// /**
+//  * Memilih tujuan perjalanan dari dropdown tujuan/arrival
+//  * @param {object} webApp 
+//  * @param {string} arrival - Nama outlet tujuan 
+//  */
 
 // Helper function to pick arrival
 async function pickArrival(webApp, arrival) {
