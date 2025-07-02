@@ -55,23 +55,23 @@ async function dataTracking(webApp, codeBooking) {
     }
 }
 
-// /**
-//  * Pengujian utama untuk fitur pelacakan paket
-//  * 
-//  * Tujuan:
-//  * - Memastikan pengguna dapat melakukan pelacakan paket berdasarkan kode booking
-//  * 
-//  * Alur: 
-//  * - Akses halaman "Lacak Paket"
-//  * - Masukkan kode booking dari konfigurasi
-//  * - Verifikasi form dan info pelacakan muncul
-//  * 
-//  * Allure Labels:
-//  * - feature: Tracking Packet
-//  * - severity: normal
-//  * - platform: web
-//  * - status: pass
-//  */
+/**
+ * Pengujian utama untuk fitur pelacakan paket
+ * 
+ * Tujuan:
+ * - Memastikan pengguna dapat melakukan pelacakan paket berdasarkan kode booking
+ * 
+ * Alur: 
+ * - Akses halaman "Lacak Paket"
+ * - Masukkan kode booking dari konfigurasi
+ * - Verifikasi form dan info pelacakan muncul
+ * 
+ * Allure Labels:
+ * - feature: Tracking Packet
+ * - severity: normal
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test 
 test('packetTracking', async ({ webApp }) => {

@@ -24,18 +24,18 @@ async function privacyPolicy(webApp) {
     await expect(webApp.locator(`xpath=//h3[normalize-space()='kebijakan privasi']`)).toBeVisible();
 }
 
-// /**
-//  * Pengujian utama untuk halaman Privacy Policy
-//  * 
-//  * Tujuan:
-//  * - Memastikan tautan "Kebijakan Privasi" dapat diakses dan menampilkan halaman yang benar
-//  * 
-//  * Allure Labels:
-//  * - feature: Privacy and Policy
-//  * - severity: normal
-//  * - platform: web
-//  * - status: pass
-//  */
+/**
+ * Pengujian utama untuk halaman Privacy Policy
+ * 
+ * Tujuan:
+ * - Memastikan tautan "Kebijakan Privasi" dapat diakses dan menampilkan halaman yang benar
+ * 
+ * Allure Labels:
+ * - feature: Privacy and Policy
+ * - severity: normal
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test
 test('provacy policy', async ({ webApp }) => {

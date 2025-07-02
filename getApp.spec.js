@@ -30,18 +30,18 @@ async function clickSource(webApp) {
     // await appStoreBtn.click();
 }
 
-// /**
-//  * Pengujian utama untuk klik tautan sumber website
-//  * 
-//  * Tujuan:
-//  * - Memastikan bahwa ikon/link web source dapat diklik dari halaman utama
-//  * 
-//  * Allure Labels:
-//  * - feature: click web source
-//  * - severity: normal
-//  * - platform: web
-//  * - status: pass
-//  */
+/**
+ * Pengujian utama untuk klik tautan sumber website
+ * 
+ * Tujuan:
+ * - Memastikan bahwa ikon/link web source dapat diklik dari halaman utama
+ * 
+ * Allure Labels:
+ * - feature: click web source
+ * - severity: normal
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test
 test('clicking source', async ({ webApp }) => {

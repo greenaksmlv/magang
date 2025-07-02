@@ -23,18 +23,18 @@ async function galery(webApp) {
     await expect(webApp.locator(`xpath=//h3[@class='header-title mb-2 text-white']`)).toBeVisible();
 }
 
-// /**
-//  * Pengujian utama untuk fitur Galeri
-//  * 
-//  * Tujuan:
-//  * - Memastikan pengguna dapat mengakses halaman Galeri
-//  * 
-//  * Allure Labels:
-//  * - feature: galery page 
-//  * - severity: normal
-//  * - platform: web
-//  * - status: pass
-//  */
+/**
+ * Pengujian utama untuk fitur Galeri
+ * 
+ * Tujuan:
+ * - Memastikan pengguna dapat mengakses halaman Galeri
+ * 
+ * Allure Labels:
+ * - feature: galery page 
+ * - severity: normal
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test
 test('galery', async ({ webApp }) => {

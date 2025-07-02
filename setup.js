@@ -10,15 +10,15 @@ const { test, expect, chromium } = require('@playwright/test');
 const { config } = require('./config');
 
 
-// /**
-//  * @function closePopup
-//  * @description
-//  * Menutup semua popup awal yang muncul ketika halaman dimuat
-//  * Fungsi ini akan mencari tombol close dengan ikon `fa-times-circle` dan mengklik tombolnya selama masih terlihat
-//  * 
-//  * @param {Page} newPage - Halaman browser yang sedang dibuka 
-//  */
-// // Close popup
+/**
+ * @function closePopup
+ * @description
+ * Menutup semua popup awal yang muncul ketika halaman dimuat
+ * Fungsi ini akan mencari tombol close dengan ikon `fa-times-circle` dan mengklik tombolnya selama masih terlihat
+ * 
+ * @param {Page} newPage - Halaman browser yang sedang dibuka 
+ */
+// Close popup
 async function closePopup(newPage) {
     test.info().annotations.push({
         type: 'allure.step',
