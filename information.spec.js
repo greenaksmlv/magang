@@ -37,18 +37,18 @@ async function clickInformation(webApp) {
     // await phone4.click();
 }
 
-// /**
-//  * Pengujian utama untuk fitur klik nomor telefon
-//  * 
-//  * Tujuan: 
-//  * - Memastikan nomor telefon yang tercantum di informasi footer dapat terlihat dan diklik
-//  * 
-//  * Allure Labels:
-//  * - feature: information page
-//  * - severity: normal
-//  * - platform: web
-//  * - status: pass
-//  */
+/**
+ * Pengujian utama untuk fitur klik nomor telefon
+ * 
+ * Tujuan: 
+ * - Memastikan nomor telefon yang tercantum di informasi footer dapat terlihat dan diklik
+ * 
+ * Allure Labels:
+ * - feature: information page
+ * - severity: normal
+ * - platform: web
+ * - status: pass
+ */
 
 // Main test
 test('clicking phone number info', async ({ webApp }) => {
