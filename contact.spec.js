@@ -23,18 +23,18 @@ async function contactUs(webApp) {
     await expect(webApp.locator(`xpath=//h3[@class='header-title mb-2 text-white']`)).toBeVisible();
 }
 
-/**
- * Pengujian utama untuk fitur Contact Us
- * 
- * Tujuan:
- * - Memastikan pengguna dapat mengakses halaman Kontak
- * 
- * Allure Labels:
- * - feature: contact us page
- * - severity: normal
- * - platform: web
- * - status: pass
- */
+// /**
+//  * Pengujian utama untuk fitur Contact Us
+//  * 
+//  * Tujuan:
+//  * - Memastikan pengguna dapat mengakses halaman Kontak
+//  * 
+//  * Allure Labels:
+//  * - feature: contact us page
+//  * - severity: normal
+//  * - platform: web
+//  * - status: pass
+//  */
 
 // Main test
 test('contact', async ({ webApp }) => {

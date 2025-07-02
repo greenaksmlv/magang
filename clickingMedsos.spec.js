@@ -32,18 +32,18 @@ async function clickMedsos(webApp) {
     // await ttBtn.click();
 }
 
-/**
- * Pengujian utama untuk fitur klik media social
- * 
- * Tujuan:
- * - Memastikan bahwa ikon media social yang berada di footer dapat diklik dan terlihat
- * 
- * Allure Labels: 
- * - feature: media social
- * - severity: normal
- * - platform: web
- * - status: pass
- */
+// /**
+//  * Pengujian utama untuk fitur klik media social
+//  * 
+//  * Tujuan:
+//  * - Memastikan bahwa ikon media social yang berada di footer dapat diklik dan terlihat
+//  * 
+//  * Allure Labels: 
+//  * - feature: media social
+//  * - severity: normal
+//  * - platform: web
+//  * - status: pass
+//  */
 
 // Main test
 test('clicking media social', async ({ webApp }) => {

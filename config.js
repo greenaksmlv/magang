@@ -1,10 +1,10 @@
-/**
- * @file config.js
- * @description
- * File konfigurasi utama untuk skenario automation Connex Shuttle menggunakan Playwright
- * File ini berisi data dinamis seperti kredensial, jadwal perjalanan, informasi penumpang,
- * metode pembayaran, link berita, dan elemen lain yang digunakan oleh semua test
- */
+// /**
+//  * @file config.js
+//  * @description
+//  * File konfigurasi utama untuk skenario automation Connex Shuttle menggunakan Playwright
+//  * File ini berisi data dinamis seperti kredensial, jadwal perjalanan, informasi penumpang,
+//  * metode pembayaran, link berita, dan elemen lain yang digunakan oleh semua test
+//  */
 
 export const config = {
   /** @property {string} environment - Lingkungan pengujian, contoh: 'dev', 'qa', 'prod' */
