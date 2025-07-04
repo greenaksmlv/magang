@@ -1,6 +1,6 @@
 const { channel } = require('diagnostics_channel');
-const { config } = require('./config');
-const { test, expect } = require('./setup');
+const { config } = require('../config');
+const { test, expect } = require('../setup');
 
 /**
  * Fungsi:

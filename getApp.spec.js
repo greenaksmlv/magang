@@ -1,5 +1,5 @@
-const { config } = require('./config');
-const { test, expect } = require('./setup');
+const { config } = require('../config');
+const { test, expect } = require('../setup');
 
 /**
  * Fungsi untuk menguji interaksi klik pada ikon sumber website
