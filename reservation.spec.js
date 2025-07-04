@@ -1,5 +1,5 @@
 const { channel } = require('diagnostics_channel');
-const { config } = require('./configConnex');
+const { config } = require('./config');
 const { test, expect } = require('./setup');
 
 /**
@@ -91,14 +91,14 @@ async function selectSchedule(webApp) {
 }
 
 /**
- * Mengisi data pemesan dan penumpang yang disesuaikan dengan configConnex.js 
+ * Mengisi data pemesan dan penumpang yang disesuaikan dengan config.js 
  * Mengklik checkbox apabila pemesan adalah penumpang
  * Apabila bukan penumpang, maka akan mengisi secara manual
  */
 
 // Helper function to input passenger data
 async function inputPassengerData(webApp) {
-    const passengerData = configConnex.passenger_data;
+    const passengerData = config.passenger_data;
     const passengers = passengerData.passengers;
     const totalPassengers = passengers.length;
 
@@ -135,7 +135,7 @@ async function inputPassengerData(webApp) {
 }
 
 /**
- * Memilih kursi sesuai dengan nama dan nomor yang ada di configConnex.js
+ * Memilih kursi sesuai dengan nama dan nomor yang ada di config.js
  * Apabila penumpang > 1 maka, akan klik nama penumpang lalu akan memilih nomor kursi
  */
 
@@ -146,7 +146,7 @@ async function selectSeat(webApp) {
         value: 'Select seat',
     });
 
-    const passengers = configConnex.passenger_data.passengers;
+    const passengers = config.passenger_data.passengers;
 
     for (let i = 0; i < passengers.length; i++) {
         const passenger = passengers[i];
@@ -258,15 +258,15 @@ test('reservation', async ({ webApp }) => {
     });
 
     // Pick departure and arrival
-    await pickDeparture(webApp, configConnex.journey.departure);
+    await pickDeparture(webApp, config.journey.departure);
     await webApp.waitForTimeout(1000); // Replace pageWaitUntil with explicit timeout
-    await pickArrival(webApp, configConnex.journey.arrival);
+    await pickArrival(webApp, config.journey.arrival);
     
     // Select date and passenger count if needed
-    await selectDate(webApp, configConnex.journey.date);
-    await selectPassenger(webApp, configConnex.journey.passenger_count);
-    if (configConnex.journey.passengerCount > 1) {
-        await selectPassenger(webApp, configConnex.journey.passenger_count);
+    await selectDate(webApp, config.journey.date);
+    await selectPassenger(webApp, config.journey.passenger_count);
+    if (config.journey.passengerCount > 1) {
+        await selectPassenger(webApp, config.journey.passenger_count);
     }
     
     // Select a schedule
@@ -276,20 +276,20 @@ test('reservation', async ({ webApp }) => {
     await inputPassengerData(webApp);
     
     // Select seat
-    await selectSeat(webApp, configConnex.passenger_data.seat_number);
+    await selectSeat(webApp, config.passenger_data.seat_number);
 
-    if(configConnex.voucher.freepass != ''){
-        await usingVoucher(webApp, configConnex.voucher.freepass)
+    if(config.voucher.freepass != ''){
+        await usingVoucher(webApp, config.voucher.freepass)
     }
-    else if(configConnex.voucher.harga != ''){
-        await usingVoucher(webApp, configConnex.voucher.harga)
+    else if(config.voucher.harga != ''){
+        await usingVoucher(webApp, config.voucher.harga)
     }
-    else if(configConnex.voucher.diskon != ''){
-        await usingVoucher(webApp, configConnex.voucher.diskon)
+    else if(config.voucher.diskon != ''){
+        await usingVoucher(webApp, config.voucher.diskon)
     }
 
     // Select payment method
-    await selectPayment(webApp, configConnex.payment.collapse1.gopay);
+    await selectPayment(webApp, config.payment.collapse1.gopay);
     
     // Accept terms and submit
     await checkingTnc(webApp)    

@@ -1,4 +1,4 @@
-const { config } = require('./configConnex');
+const { config } = require('./config');
 const { test, expect } = require('./setup');
 
 
@@ -12,7 +12,7 @@ const { test, expect } = require('./setup');
  * - Cari dan klik tombol metode login yang disesuaikan dengan `method`
  * 
  * @param {object} webApp - Konteks Playwright browser 
- * @param {string} method - Key metode login yang disesuaikan dengan konfigurasi di configConnex.sign_methods
+ * @param {string} method - Key metode login yang disesuaikan dengan konfigurasi di config.sign_methods
  */
 
 // Helper function to Sign In
@@ -25,7 +25,7 @@ async function signIn(webApp, method) {
     await webApp.locator(`xpath=//a[normalize-space()='Masuk']`).click();
     await expect(webApp.locator(`xpath=//h4[normalize-space()='Masuk Dengan']`)).toBeVisible();
 
-    const selector = configConnex.sign_methods[method];
+    const selector = config.sign_methods[method];
     const button = webApp.locator(selector);
     await expect(button).toBeVisible();
     await button.click();

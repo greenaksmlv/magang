@@ -1,4 +1,4 @@
-const { config } = require('./configConnex');
+const { config } = require('./config');
 const { test, expect } = require('./setup');
 
 /**
@@ -19,20 +19,20 @@ async function clickInformation(webApp) {
         value: 'Clicking phone numbers on website information',
     });
 
-    const phone1 = webApp.locator(configConnex.phone_info.no1);
+    const phone1 = webApp.locator(config.phone_info.no1);
     await expect(phone1).toBeVisible();
     await phone1.click();
 
     // NOMOR TELEFON LAINNYA DAPAT DIAKTIFKAN SESUAI DENGAN KEBUTUHAN
-    // const phone2 = webApp.locator(configConnex.phone_info.no2);
+    // const phone2 = webApp.locator(config.phone_info.no2);
     // await expect(phone2).toBeVisible();
     // await phone2.click();
 
-    // const phone3 = webApp.locator(configConnex.phone_info.no3);
+    // const phone3 = webApp.locator(config.phone_info.no3);
     // await expect(phone3).toBeVisible();
     // await phone3.click();
 
-    // const phone4 = webApp.locator(configConnex.phone_info.no4);
+    // const phone4 = webApp.locator(config.phone_info.no4);
     // await expect(phone4).toBeVisible();
     // await phone4.click();
 }

@@ -1,4 +1,4 @@
-const { config } = require('./configConnex');
+const { config } = require('./config');
 const { test, expect } = require('./setup');
 
 /**
@@ -95,8 +95,8 @@ test('packetTracking', async ({ webApp }) => {
     
     try {
         // Starting the tracking process
-        await packetTracking(webApp, configConnex.booking_code.packet);
-        await dataTracking(webApp, configConnex.booking_code.packet);
+        await packetTracking(webApp, config.booking_code.packet);
+        await dataTracking(webApp, config.booking_code.packet);
     } catch (error) {
         // Handle any error that might occur during the test
         test.fail(`Test failed: ${error.message}`);
