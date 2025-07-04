@@ -1,4 +1,4 @@
-const { config } = require('./config');
+const { config } = require('./configConnex');
 const { test, expect } = require('./setup');
 
 /**

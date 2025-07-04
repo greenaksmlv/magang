@@ -1,4 +1,4 @@
-const { config } = require('./config');
+const { config } = require('./configConnex');
 const { test, expect } = require('./setup');
 
 /**
@@ -18,16 +18,16 @@ async function clickMedsos(webApp) {
         value: 'Clicking medsos on website footer',
     });
 
-    const igBtn = webApp.locator(config.media_sosial.instagram);
+    const igBtn = webApp.locator(configConnex.media_sosial.instagram);
     await expect(igBtn).toBeVisible();
     await igBtn.click();
 
     // AKTIFKAN JIKA INGIN MENGUJI TOMBOL LAINNYA 
-    // const fcbkBtn = webapp.locator(config.media_sosial.facebook);
+    // const fcbkBtn = webapp.locator(configConnex.media_sosial.facebook);
     // await expect(fcbkBtn).toBeVisible();
     // await fcbkBtn.click();
 
-    // const ttBtn = webApp.locator(config.media_sosial.tiktok);
+    // const ttBtn = webApp.locator(configConnex.media_sosial.tiktok);
     // await expect(ttBtn).toBeVisible();
     // await ttBtn.click();
 }

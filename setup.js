@@ -7,7 +7,7 @@
  */
 
 const { test, expect, chromium } = require('@playwright/test');
-const { config } = require('./config');
+const { config } = require('./configConnex');
 
 
 /**
@@ -59,7 +59,7 @@ exports.expect = expect;
  * Fixture `webApp` mengoverride Playwright default `page` dengan page yang baru 
  * Fixture ini akan:
  * 1. Meluncurkan browser Chromium
- * 2. Membuka halaman awal Connex (`config.url.website`)
+ * 2. Membuka halaman awal Connex (`configConnex.url.website`)
  * 3. Menutup popup jiga ada
  * 4. Menyediakan halaman yang siap untuk digunakan pada setiap test
  */
@@ -70,7 +70,7 @@ exports.test = test.extend({
         const browser = await chromium.launch({ headless: false });
         const context = await browser.newContext();
         const newPage = await context.newPage();  // Create a new page here
-        const url = config.url.website;
+        const url = configConnex.url.website;
         await newPage.goto(url);
         await closePopup(newPage)
         await use(newPage); // Use the newPage instead of the existing page

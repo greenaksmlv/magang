@@ -1,4 +1,4 @@
-const { config } = require('./config');
+const { config } = require('./configConnex');
 const { test, expect } = require('./setup');
 
 /**
@@ -20,12 +20,12 @@ async function clickSource(webApp) {
         value: 'Clicking website source',
     });
 
-    const googlePlayBtn = webApp.locator(config.web_source.playstore);
+    const googlePlayBtn = webApp.locator(configConnex.web_source.playstore);
     await expect(googlePlayBtn).toBeVisible();
     await googlePlayBtn.click();
 
     // AKTIFKAN JIKA INGIN MENGUJI TOMBOL LAINNYA 
-    // const appStoreBtn = webApp.locator(config.web_source.appstore);
+    // const appStoreBtn = webApp.locator(configConnex.web_source.appstore);
     // await expect(appStoreBtn).toBeVisible();
     // await appStoreBtn.click();
 }

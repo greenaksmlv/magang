@@ -1,4 +1,4 @@
-const { config } = require('./config');
+const { config } = require('./configConnex');
 const { test, expect } = require('./setup');
 
 /**
@@ -27,13 +27,13 @@ async function aboutUs(webApp) {
 }
 
 /**
- * Klik salah satu berita/artikel yang ada di Blog berdasarkan key yang ada di config
+ * Klik salah satu berita/artikel yang ada di Blog berdasarkan key yang ada di configConnex
  * 
  * @param {object} webApp - Konteks browser dari Playwright 
- * @param {string} newsKey - Key untuk mencari path artikel dari config.news 
+ * @param {string} newsKey - Key untuk mencari path artikel dari configConnex.news 
  * 
  * Alur:
- * - Mengambil path artikel dari config.news
+ * - Mengambil path artikel dari configConnex.news
  * - Temukan tombol berita/selengkapnya
  * - Pastikan tombol terlihat
  * - Klik tombol
@@ -45,7 +45,7 @@ async function berita(webApp, newsKey) {
         value: 'Melihat berita di blog',
     });
 
-    const news = config.news[newsKey];
+    const news = configConnex.news[newsKey];
     const beritaBtn = webApp.locator(`xpath=//a[@href='${news}']`);
     
     await expect(beritaBtn).toBeVisible();

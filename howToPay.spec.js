@@ -1,4 +1,4 @@
-const { config } = require('./config');
+const { config } = require('./configConnex');
 const { test, expect } = require('./setup');
 
 /**
@@ -14,7 +14,7 @@ const { test, expect } = require('./setup');
  *      - Verifikasi bahwa detail instruksi terlihat
  * 
  * @param {object} webApp - Konteks Playwright (browser page)
- * @param {Array<string>} methods - Daftar ID metode pembayaran yang ingin diketahui dari (config.more_info.method) 
+ * @param {Array<string>} methods - Daftar ID metode pembayaran yang ingin diketahui dari (configConnex.more_info.method) 
  */
 
 // Helper function to check how to pay 
@@ -78,5 +78,5 @@ test('how to pay', async ({ webApp }) => {
     });
 
     // Start the how to pay process
-    await howToPay(webApp, config.more_info.method);
+    await howToPay(webApp, configConnex.more_info.method);
 });

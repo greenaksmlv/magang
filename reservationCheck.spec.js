@@ -1,5 +1,5 @@
 const { channel } = require('diagnostics_channel');
-const { config } = require('./config');
+const { config } = require('./configConnex');
 const { test, expect } = require('./setup');
 
 /**
@@ -98,5 +98,5 @@ test('Reservation Check', async ({ webApp }) => {
         value: 'Start to check the code booking process',
     });
 
-    await reservationCheck(webApp, config.booking_code.ticket);
+    await reservationCheck(webApp, configConnex.booking_code.ticket);
 });

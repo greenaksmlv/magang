@@ -1,12 +1,12 @@
 /**
- * @file config.js
+ * @file configConnex.js
  * @description
  * File konfigurasi utama untuk skenario automation Connex Shuttle menggunakan Playwright
  * File ini berisi data dinamis seperti kredensial, jadwal perjalanan, informasi penumpang,
  * metode pembayaran, link berita, dan elemen lain yang digunakan oleh semua test
  */
 
-export const config = {
+export const configConnex = {
   /** @property {string} environment - Lingkungan pengujian, contoh: 'dev', 'qa', 'prod' */
     environment: 'qa',
 
@@ -93,12 +93,19 @@ export const config = {
       gloryPromo: 'https://www.connex.co.id/berita/naik-shuttle-makin-murah-nikmati-glory-promo-sekarang',
     },
 
-    /** @property {object} sign_methods - Metode login yang tersedia di halaman login */
+    // Sign in Connex
+    // /** @property {object} sign_methods - Metode login yang tersedia di halaman login */
+    // sign_methods: {
+    //   phone: `xpath=//button[normalize-space()='Nomor Telepon']`,
+    //   whatsapp: `xpath=//button[normalize-space()='Whatsapp']`,
+    //   email: `xpath=//button[normalize-space()='Email']`,
+    //   google: `xpath=//button[@id='googleLogin']`,
+    // },
+
+    // Sign in DayTrans
     sign_methods: {
       phone: `xpath=//button[normalize-space()='Nomor Telepon']`,
       whatsapp: `xpath=//button[normalize-space()='Whatsapp']`,
-      email: `xpath=//button[normalize-space()='Email']`,
-      google: `xpath=//button[@id='googleLogin']`,
     },
 
     /** @property {object} more_info - Informasi tambahan seperti metode pembayaran */
@@ -129,7 +136,7 @@ export const config = {
 
     /** @property {object} url - URL utama sistem */
     url: {
-      website: 'https://connex.co.id',
+      website: 'https://daytrans.co.id',
       otp: ''
     }
 };
